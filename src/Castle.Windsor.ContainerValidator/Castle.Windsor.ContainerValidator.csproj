@@ -12,6 +12,8 @@
     <Authors>OshryH</Authors>
     <Version>0.0.1</Version>
     <Company>Dnata</Company>
+    <Description>A plugin for validating all of the dependencies of a given Castle.Windsor.IWindsorContainer.</Description>
+    <RepositoryType>NuGet</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
