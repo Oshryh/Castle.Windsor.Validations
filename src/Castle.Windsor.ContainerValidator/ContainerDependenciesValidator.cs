@@ -4,19 +4,12 @@ using System.Linq;
 
 namespace Castle.Windsor.ContainerValidator
 {
-    public class ContainerDependenciesValidator
+    public static class ContainerDependenciesValidator
     {
 
-        private readonly IWindsorContainer _container;
-
-        public ContainerDependenciesValidator(IWindsorContainer container)
+        public static void ValidateAllDependenciesResolvable(this IWindsorContainer container)
         {
-            _container = container;
-        }
-
-        public void ValidateAllDependenciesResolvable()
-        {
-            var containerServices = _container.Kernel.GetHandlers()
+            var containerServices = container.Kernel.GetHandlers()
                 .OrderBy(p => p.ComponentModel.Dependencies.Count)
                 .SelectMany(handler => handler.ComponentModel.Services);
 
@@ -26,7 +19,7 @@ namespace Castle.Windsor.ContainerValidator
             {
                 try
                 {
-                    if (_container.Resolve(service) == null)
+                    if (container.Resolve(service) == null)
                         throw new Exception(
                             $"The service {service.FullName} was successfully resolved, but was returned as null.");
                 }
