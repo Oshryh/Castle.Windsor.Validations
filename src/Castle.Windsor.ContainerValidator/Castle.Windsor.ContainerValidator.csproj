@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <PackageProjectUrl>https://github.com/Oshryh/Castle.Windsor.ContainerValidator</PackageProjectUrl>
     <RepositoryUrl>https://www.nuget.org/packages/Castle.Windsor.ContainerValidator</RepositoryUrl>
     <PackageTags>Test;IOC;Castle;Windsor;WindsorContainer;DependencyValidation</PackageTags>
