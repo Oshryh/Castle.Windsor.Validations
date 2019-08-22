@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageProjectUrl>https://github.com/Oshryh/Castle.Windsor.ContainerValidator</PackageProjectUrl>
+    <RepositoryUrl>https://www.nuget.org/packages/Castle.Windsor.ContainerValidator</RepositoryUrl>
+    <PackageTags>Test;IOC;Castle;Windsor;WindsorContainer;DependencyValidation</PackageTags>
+    <Copyright>Copyright 2019 Oshry Horn</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <FileVersion>0.0.1.0</FileVersion>
+    <Authors>OshryH</Authors>
+    <Version>0.0.1</Version>
+    <Company>Dnata</Company>
   </PropertyGroup>
 
   <ItemGroup>
