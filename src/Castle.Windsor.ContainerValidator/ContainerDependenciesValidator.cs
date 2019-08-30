@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Castle.Windsor.ContainerValidator
 {
@@ -9,6 +10,13 @@ namespace Castle.Windsor.ContainerValidator
 
         public static void ValidateAllDependenciesResolvable(this IWindsorContainer container)
         {
+            ValidateAllDependenciesResolvableAsync(container).Wait();
+        }
+
+        public static async Task ValidateAllDependenciesResolvableAsync(this IWindsorContainer container)
+        {
+            await Task.Delay(10).ConfigureAwait(false);
+
             var containerServices = container.Kernel.GetHandlers()
                 .OrderBy(p => p.ComponentModel.Dependencies.Count)
                 .SelectMany(handler => handler.ComponentModel.Services);
