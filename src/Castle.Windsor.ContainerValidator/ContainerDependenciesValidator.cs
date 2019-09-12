@@ -18,7 +18,8 @@ namespace Castle.Windsor.ContainerValidator
             await Task.Delay(10).ConfigureAwait(false);
 
             var containerServices = container.Kernel.GetHandlers()
-                .OrderBy(p => p.ComponentModel.Dependencies.Count)
+                .OrderBy(handler => handler.ComponentModel.Dependencies.Count)
+                .Where(handler => !handler.ComponentModel.RequiresGenericArguments)
                 .SelectMany(handler => handler.ComponentModel.Services);
 
             var exceptions = new List<Exception>();
