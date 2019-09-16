@@ -1,4 +1,4 @@
-# Castle.Windsor.ContainerValidator [![Build status](https://ci.appveyor.com/api/projects/status/km7el3evvelhtl6f/branch/master?svg=true)](https://ci.appveyor.com/project/OshryHorn/Castle.Windsor.Validations/branch/master) [![NuGet Badge](https://buildstats.info/nuget/Castle.Windsor.Validations)](https://www.nuget.org/packages/Castle.Windsor.Validations/)
+# Castle.Windsor.Validations [![Build status](https://ci.appveyor.com/api/projects/status/km7el3evvelhtl6f/branch/master?svg=true)](https://ci.appveyor.com/project/OshryHorn/Castle.Windsor.Validations/branch/master) [![NuGet Badge](https://buildstats.info/nuget/Castle.Windsor.Validations)](https://www.nuget.org/packages/Castle.Windsor.Validations/)
 Plugin for validation of dependencies in given Castle.Windsor.IWindsorContainer and Castle.Windsor.IWindsorInstaller objects.  
 
 ## What for?
