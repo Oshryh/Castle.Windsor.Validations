@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castle.Windsor.Validations.Tests", "Castle.Windsor.Validations.Tests\Castle.Windsor.Validations.Tests.csproj", "{4ADC22E4-B976-458A-A648-E256D7DFFA1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B522ECC5-25EB-46AB-A571-9FE5FD9FA7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B522ECC5-25EB-46AB-A571-9FE5FD9FA7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B522ECC5-25EB-46AB-A571-9FE5FD9FA7B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ADC22E4-B976-458A-A648-E256D7DFFA1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ADC22E4-B976-458A-A648-E256D7DFFA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ADC22E4-B976-458A-A648-E256D7DFFA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ADC22E4-B976-458A-A648-E256D7DFFA1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
