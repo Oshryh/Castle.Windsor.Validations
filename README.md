@@ -15,6 +15,7 @@ The Castle.Windsor.Validations provides extension methods for validating that al
 The easiest way would be to just install the NuGet package through the Visual Studio Package Manager, or to run the following in the Package Manager Console: ```Install-Package Castle.Windsor.Validations```
 
 ## How to use?
+#### 1) Validate the WindsorContainer:  
 ```csharp
 [Fact]
 public void TestIocContainer()
@@ -23,8 +24,23 @@ public void TestIocContainer()
   container.ValidateAllDependenciesResolvable();
 }
 ```  
+#### 2) Validate the WindsorInstaller:  
+```csharp
+[Fact]
+public void TestIocInstaller()
+{
+  new MyMainWindsorInstaller().ValidateAllDependenciesResolvable();
+}
+```  
+#### 3) Validate with async/await:  
+```csharp
+[Fact]
+public async Task TestIocInstaller()
+{
+  new MyMainWindsorInstaller().ValidateAllDependenciesResolvableAsync().ConfigureAwait(false);
+}
+```  
   
-  
-#### Please tell me if there are any issues/problems/bus/requests! :D
+#### Please tell me if there are any issues/problems/questions/requests! :D
 
 ### Have fun! 
