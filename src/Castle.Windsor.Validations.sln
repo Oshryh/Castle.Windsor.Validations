@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Castle.Windsor.ContainerValidator", "Castle.Windsor.ContainerValidator\Castle.Windsor.ContainerValidator.csproj", "{B522ECC5-25EB-46AB-A571-9FE5FD9FA7B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Castle.Windsor.Validations", "Castle.Windsor.Validations\Castle.Windsor.Validations.csproj", "{B522ECC5-25EB-46AB-A571-9FE5FD9FA7B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
