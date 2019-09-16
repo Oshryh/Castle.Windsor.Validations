@@ -2,11 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Castle.MicroKernel.Registration;
 
-namespace Castle.Windsor.ContainerValidator
+namespace Castle.Windsor.DependenciesValidations
 {
-    public static class ContainerDependenciesValidator
+    public static class Extentions 
     {
+
+        public static async Task ValidateAllDependenciesResolvableAsync(this IWindsorInstaller installer)
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.Install(installer);
+                await ValidateAllDependenciesResolvableAsync(container).ConfigureAwait(false);
+            }
+        }
+
+        public static void ValidateAllDependenciesResolvable(this IWindsorInstaller installer)
+        {
+            using (var container = new WindsorContainer())
+            {
+                container.Install(installer);
+                ValidateAllDependenciesResolvableAsync(container).Wait();
+            }
+        }
 
         public static void ValidateAllDependenciesResolvable(this IWindsorContainer container)
         {
