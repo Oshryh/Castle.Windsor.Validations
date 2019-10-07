@@ -30,12 +30,12 @@ namespace Castle.Windsor.Validations
         {
             await Task.Delay(10).ConfigureAwait(false);
 
-            var containerServices = container.Kernel.GetHandlers()
+            var containerServices = container.Kernel.GetAssignableHandlers(typeof(object))
                 .OrderBy(handler => handler.ComponentModel.Dependencies.Count)
                 .Where(handler => !handler.ComponentModel.RequiresGenericArguments)
                 .SelectMany(handler => handler.ComponentModel.Services);
 
-            var exceptions = new List<Exception>();
+            var servicesExceptions = new Dictionary<Type, Exception>();
 
             foreach (var service in containerServices)
             {
@@ -47,30 +47,34 @@ namespace Castle.Windsor.Validations
                 }
                 catch (Exception ex)
                 {
-                    exceptions.Add(ex);
+                    servicesExceptions.Add(service, ex);
                 }
             }
 
-            if (exceptions.Any())
-                throw GetReadableException(exceptions);
+            if (servicesExceptions.Any())
+                throw GetReadableException(servicesExceptions);
         }
 
-        private static Exception GetReadableException(List<Exception> exceptions)
+        private static Exception GetReadableException(Dictionary<Type, Exception> servicesExceptions)
         {
-            if (exceptions.Count == 1)
-                return exceptions.First();
+            var errorMessages = servicesExceptions
+                .Select(p => GetReadableServiceResolutionException(p.Key, p.Value))
+                .Aggregate((p1, p2) => p1 + Environment.NewLine + p2);
 
-            var lineBreak = Environment.NewLine
-                + "-------------------------------------------------------------------------------------------------"
+            var aggregatedExceptionErrorMessage = $"{servicesExceptions.Count} IOC services were not resolved:{Environment.NewLine}{errorMessages}";
+
+            return new AggregateException(aggregatedExceptionErrorMessage, servicesExceptions.Values);
+        }
+
+        private static string GetReadableServiceResolutionException(Type service, Exception resolutionException)
+        {
+            return
+                "-------------------------------------------------------------------------------------------------"
+                + Environment.NewLine
+                + $"Service: {service.FullName}"
+                + Environment.NewLine
+                + $"Resolution exception: {resolutionException.Message}"
                 + Environment.NewLine;
-
-            var errorMessages = exceptions
-                .Select(p => p.Message)
-                .Aggregate((p1, p2) => p1 + lineBreak + p2);
-
-            var aggregatedExceptionErrorMessage = $"{exceptions.Count} IOC services were not resolved:{Environment.NewLine}{errorMessages}";
-
-            return new AggregateException(aggregatedExceptionErrorMessage, exceptions);
         }
 
     }
