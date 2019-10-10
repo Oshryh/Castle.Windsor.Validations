@@ -17,9 +17,8 @@ namespace Castle.Windsor.Validations
         /// <param name="installer">An IWindsorInstaller to validate</param>
         public static async Task ValidateAllDependenciesResolvableAsync(this IWindsorInstaller installer)
         {
-            using (var container = new WindsorContainer())
+            using (var container = new WindsorContainer().Install(installer))
             {
-                container.Install(installer);
                 await container.ValidateAllDependenciesResolvableAsync().ConfigureAwait(false);
             }
         }
@@ -31,11 +30,7 @@ namespace Castle.Windsor.Validations
         /// <param name="installer">An IWindsorInstaller to validate</param>
         public static void ValidateAllDependenciesResolvable(this IWindsorInstaller installer)
         {
-            using (var container = new WindsorContainer())
-            {
-                container.Install(installer);
-                container.ValidateAllDependenciesResolvable();
-            }
+            ValidateAllDependenciesResolvableAsync(installer).Wait();
         }
     }
 }

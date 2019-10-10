@@ -28,53 +28,8 @@ namespace Castle.Windsor.Validations
         /// <param name="container">An IWindsorContainer to validate</param>
         public static async Task ValidateAllDependenciesResolvableAsync(this IWindsorContainer container)
         {
-            await Task.Delay(10).ConfigureAwait(false);
-
-            var containerServices = container.Kernel.GetAssignableHandlers(typeof(object))
-                .OrderBy(handler => handler.ComponentModel.Dependencies.Count)
-                .Where(handler => !handler.ComponentModel.RequiresGenericArguments)
-                .SelectMany(handler => handler.ComponentModel.Services);
-
-            var servicesExceptions = new Dictionary<Type, Exception>();
-
-            foreach (var service in containerServices)
-            {
-                try
-                {
-                    if (container.Resolve(service) == null)
-                        throw new Exception(
-                            $"The service {service.FullName} was successfully resolved, but was returned as null.");
-                }
-                catch (Exception ex)
-                {
-                    servicesExceptions.Add(service, ex);
-                }
-            }
-
-            if (servicesExceptions.Any())
-                throw GetReadableException(servicesExceptions);
-        }
-
-        private static Exception GetReadableException(Dictionary<Type, Exception> servicesExceptions)
-        {
-            var errorMessages = servicesExceptions
-                .Select(p => GetReadableServiceResolutionException(p.Key, p.Value))
-                .Aggregate((p1, p2) => p1 + Environment.NewLine + p2);
-
-            var aggregatedExceptionErrorMessage = $"{servicesExceptions.Count} IOC services were not resolved:{Environment.NewLine}{errorMessages}";
-
-            return new AggregateException(aggregatedExceptionErrorMessage, servicesExceptions.Values);
-        }
-
-        private static string GetReadableServiceResolutionException(Type service, Exception resolutionException)
-        {
-            return
-                "-------------------------------------------------------------------------------------------------"
-                + Environment.NewLine
-                + $"Service: {service.FullName}"
-                + Environment.NewLine
-                + $"Resolution exception: {resolutionException.Message}"
-                + Environment.NewLine;
+            await ContainerValidationsProvider.Instance.ValidateAllDependenciesResolvableAsync(container)
+                .ConfigureAwait(false);
         }
 
     }
