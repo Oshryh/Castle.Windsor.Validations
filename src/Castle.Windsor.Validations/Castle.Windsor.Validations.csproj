@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.6;netstandard2.0;net45</TargetFrameworks>
     <PackageProjectUrl>https://github.com/Oshryh/Castle.Windsor.ContainerValidator</PackageProjectUrl>
     <RepositoryUrl>https://www.nuget.org/packages/Castle.Windsor.ContainerValidator</RepositoryUrl>
     <PackageTags>Test;IOC;Castle;Windsor;WindsorContainer;DependencyValidation</PackageTags>
     <Copyright>Copyright 2019 Oshry Horn</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>0.0.32.0</AssemblyVersion>
-    <FileVersion>0.0.32.0</FileVersion>
+    <AssemblyVersion>0.0.50</AssemblyVersion>
+    <FileVersion>0.0.50</FileVersion>
     <Authors>OshryH</Authors>
-    <Version>0.0.32</Version>
+    <Version>0.0.50</Version>
     <Company>Dnata</Company>
     <Description>A plugin for validating all of the dependencies of a given Castle.Windsor.IWindsorContainer.</Description>
     <RepositoryType>NuGet</RepositoryType>
@@ -19,14 +19,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Castle.Windsor" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Windsor" Version="4.1.1" />
   </ItemGroup>
 
 </Project>
